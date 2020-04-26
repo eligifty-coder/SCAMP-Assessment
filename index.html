@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+      body{
+         width: 95vw;
+         height: 100vh;
+         margin: 0 auto;
+         padding: 5px;
+         background: rgb(0, 155, 218, 0.1);
+         display: flex;
+         justify-content: center;
+      }
+      .container{
+         width: 95vw;
+         height: 100vh;
+         margin: 0 auto;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         padding: 10px;
+      }
+      .input-container{
+         padding: 5px;
+      }
+      .val-container{
+         padding: 20px;
+      }
+      .item{
+         font-size: 20px;
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <div class="inputs-container">
+         Pick a value between 1 and 10:
+         <input type="number" name="" id="myNum" max="10" min="1">
+      </div>
+      <div class="val-container"></div>
+   </div>
+   <script>
+      document.querySelector('.inputs-container input').addEventListener('change',function(){
+         nums(Number(this.value))
+      });
+      function nums(num){
+         var i = 0;
+         let myArr = [num, num + 1];
+         let html= '';
+         let pro = setInterval(() => {
+            myArr.push(myArr[myArr.length - 1] + myArr[myArr.length - 2]);
+            i++;
+            myArr.forEach(item=>{
+               html = `<div class="item">${myArr}</div>`
+            })
+            document.querySelector('.val-container').innerHTML= html
+            if(i==10){
+               clearInterval(pro)
+            }
+            console.log(myArr)
+         }, 1000);
+      }
+   </script>
+</body>
+</html>
